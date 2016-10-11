@@ -1,0 +1,98 @@
+﻿@model PVSbase.Складские_Помещения
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Создание</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.НаименованиеПомещения)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.НаименованиеПомещения)
+            @Html.ValidationMessageFor(model => model.НаименованиеПомещения)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Инвентарный_Номер)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Инвентарный_Номер)
+            @Html.ValidationMessageFor(model => model.Инвентарный_Номер)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Площадь)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Площадь)
+            @Html.ValidationMessageFor(model => model.Площадь)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Вместимость_В_Тоннах)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Вместимость_В_Тоннах)
+            @Html.ValidationMessageFor(model => model.Вместимость_В_Тоннах)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Процент_Заполнения)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Процент_Заполнения)
+            @Html.ValidationMessageFor(model => model.Процент_Заполнения)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Ответственный, "Сотрудники")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("Ответственный", String.Empty)
+            @Html.ValidationMessageFor(model => model.Ответственный)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Степень_Изношенности_Помещения)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Степень_Изношенности_Помещения)
+            @Html.ValidationMessageFor(model => model.Степень_Изношенности_Помещения)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Дата_Последней_Проверки_Пожарной_Инспекции)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Дата_Последней_Проверки_Пожарной_Инспекции)
+            @Html.ValidationMessageFor(model => model.Дата_Последней_Проверки_Пожарной_Инспекции)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Дополнительный_Отметки)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Дополнительный_Отметки)
+            @Html.ValidationMessageFor(model => model.Дополнительный_Отметки)
+        </div>
+
+        <p>
+            <input type="submit" value="Создать" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

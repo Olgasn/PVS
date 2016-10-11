@@ -1,0 +1,99 @@
+﻿@model PVSbase.Сотрудники
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Создание</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Сотрудники</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ФИО)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ФИО)
+            @Html.ValidationMessageFor(model => model.ФИО)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Дата_Рождения)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Дата_Рождения)
+            @Html.ValidationMessageFor(model => model.Дата_Рождения)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Фото)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Фото)
+            @Html.ValidationMessageFor(model => model.Фото)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Пол)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Пол)
+            @Html.ValidationMessageFor(model => model.Пол)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Адрес)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Адрес)
+            @Html.ValidationMessageFor(model => model.Адрес)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Телефон)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Телефон)
+            @Html.ValidationMessageFor(model => model.Телефон)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Паспортные_данные)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Паспортные_данные)
+            @Html.ValidationMessageFor(model => model.Паспортные_данные)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Образование)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Образование)
+            @Html.ValidationMessageFor(model => model.Образование)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Должность)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Должность)
+            @Html.ValidationMessageFor(model => model.Должность)
+        </div>
+
+        <p>
+            <input type="submit" value="Создать" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

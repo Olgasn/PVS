@@ -1,0 +1,68 @@
+﻿@model PVSbase.Типы_Складских_Помещений
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы точно хотите удалить запись?</h3>
+<fieldset>
+    <legend>Типы_Складских_Помещений</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IDТСП)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IDТСП)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Наименование_Типа_Помещения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Наименование_Типа_Помещения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Виды_Вторичного_Сырья.Условия_Хранения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Виды_Вторичного_Сырья.Условия_Хранения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Средняя_Температура)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Средняя_Температура)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Влажность)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Влажность)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Требования_Пожарной_Безопасности)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Требования_Пожарной_Безопасности)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Наличие_Спецоборудования)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Наличие_Спецоборудования)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}

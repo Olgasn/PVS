@@ -1,0 +1,81 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<PVSbase.Сотрудники>
+<link href="~/Content/Table.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Сотрудники</h2>
+
+<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+@using (Html.BeginForm("Index", "SOTR", FormMethod.Get))
+{
+    <fieldset>
+        ФИО : @Html.TextBox("param")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+<table class="features-table">
+    <tr>
+        <th>
+            IDСотрудника
+        </th>
+        <th>
+            ФИО
+        </th>
+        <th>
+            Дата_Рождения
+        </th>
+        <th>
+            Пол
+        </th>
+        <th>
+            Адрес
+        </th>
+        <th>
+            Телефон
+        </th>
+        <th>
+            Должность
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDСотрудника)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ФИО)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_Рождения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Пол)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Адрес)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Телефон)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Должность)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.IDСотрудника }) |
+                @Html.ActionLink("Подробно", "Details", new { id = item.IDСотрудника }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.IDСотрудника })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="btn-group">
+    @Html.PagedListPager(Model, x => Url.Action("Index", new { page = x, param = Request["param"] }))
+</div>

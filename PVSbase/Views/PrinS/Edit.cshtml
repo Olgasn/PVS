@@ -1,0 +1,84 @@
+﻿@model PVSbase.Принятое_Сырье
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Принятое_Сырье</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IDПС)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IDПС)
+            @Html.ValidationMessageFor(model => model.IDПС)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IDВВС, "Виды_Вторичного_Сырья")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDВВС", String.Empty)
+            @Html.ValidationMessageFor(model => model.IDВВС)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Количество_в_КГ)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Количество_в_КГ)
+            @Html.ValidationMessageFor(model => model.Количество_в_КГ)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Цена)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Цена)
+            @Html.ValidationMessageFor(model => model.Цена)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Дата_и_Время_Приема)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Дата_и_Время_Приема)
+            @Html.ValidationMessageFor(model => model.Дата_и_Время_Приема)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Помещение_Хранения)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Помещение_Хранения)
+            @Html.ValidationMessageFor(model => model.Помещение_Хранения)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.СотрудникПриема, "Сотрудники")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("СотрудникПриема", String.Empty)
+            @Html.ValidationMessageFor(model => model.СотрудникПриема)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

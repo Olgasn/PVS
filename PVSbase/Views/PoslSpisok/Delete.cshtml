@@ -1,0 +1,68 @@
+﻿@model PVSbase.Послужной_Список
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы точно хотите удалить запись?</h3>
+<fieldset>
+    <legend>Послужной_Список</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IDПослужной_Список)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IDПослужной_Список)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Сотрудники.ФИО)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Сотрудники.ФИО)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Должности.НаименованиеДолжности)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Должности.НаименованиеДолжности)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.НаименованиеСписка)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.НаименованиеСписка)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Дата_Принятия)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Дата_Принятия)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Дата_Выхода)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Дата_Выхода)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Краткая_Характеристика)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Краткая_Характеристика)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}

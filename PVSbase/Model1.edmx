@@ -1,0 +1,544 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище PVSModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Виды_Вторичного_Сырья">
+          <Key>
+            <PropertyRef Name="IDВВС" />
+          </Key>
+          <Property Name="IDВВС" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Условия_Хранения" Type="varchar" MaxLength="20" />
+          <Property Name="Условие_Приёма_тара__упаковка_" Type="varchar" MaxLength="20" />
+          <Property Name="Наименование" Type="varchar" MaxLength="20" />
+          <Property Name="Цена_За_Килограмм" Type="int" />
+          <Property Name="Описание" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="IDДолжности" />
+          </Key>
+          <Property Name="IDДолжности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="НаименованиеДолжности" Type="varchar" MaxLength="20" />
+          <Property Name="Оклад" Type="int" />
+          <Property Name="Обязанности" Type="varchar" MaxLength="20" />
+          <Property Name="Требования" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Послужной_Список">
+          <Key>
+            <PropertyRef Name="IDПослужной_Список" />
+          </Key>
+          <Property Name="IDПослужной_Список" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDСотрудника" Type="int" />
+          <Property Name="IDДолжности" Type="int" />
+          <Property Name="НаименованиеСписка" Type="varchar" MaxLength="20" />
+          <Property Name="Дата_Принятия" Type="datetime" />
+          <Property Name="Дата_Выхода" Type="datetime" />
+          <Property Name="Краткая_Характеристика" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Принятое_Сырье">
+          <Key>
+            <PropertyRef Name="IDПС" />
+          </Key>
+          <Property Name="IDПС" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDВВС" Type="int" />
+          <Property Name="Количество_в_КГ" Type="int" />
+          <Property Name="Цена" Type="int" />
+          <Property Name="Дата_и_Время_Приема" Type="datetime" />
+          <Property Name="Помещение_Хранения" Type="varchar" MaxLength="20" />
+          <Property Name="СотрудникПриема" Type="int" />
+        </EntityType>
+        <EntityType Name="Складские_Помещения">
+          <Key>
+            <PropertyRef Name="IDСП" />
+          </Key>
+          <Property Name="IDСП" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="НаименованиеПомещения" Type="varchar" MaxLength="20" />
+          <Property Name="Инвентарный_Номер" Type="int" />
+          <Property Name="Площадь" Type="int" />
+          <Property Name="Вместимость_В_Тоннах" Type="int" />
+          <Property Name="Процент_Заполнения" Type="int" />
+          <Property Name="Ответственный" Type="int" />
+          <Property Name="Степень_Изношенности_Помещения" Type="int" />
+          <Property Name="Дата_Последней_Проверки_Пожарной_Инспекции" Type="datetime" />
+          <Property Name="Дополнительный_Отметки" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="IDСотрудника" />
+          </Key>
+          <Property Name="IDСотрудника" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИО" Type="varchar" MaxLength="20" />
+          <Property Name="Дата_Рождения" Type="datetime" />
+          <Property Name="Фото" Type="varchar" MaxLength="20" />
+          <Property Name="Пол" Type="varchar" MaxLength="20" />
+          <Property Name="Адрес" Type="varchar" MaxLength="20" />
+          <Property Name="Телефон" Type="int" />
+          <Property Name="Паспортные_данные" Type="varchar" MaxLength="20" />
+          <Property Name="Образование" Type="varchar" MaxLength="20" />
+          <Property Name="Должность" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Типы_Складских_Помещений">
+          <Key>
+            <PropertyRef Name="IDТСП" />
+          </Key>
+          <Property Name="IDТСП" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Наименование_Типа_Помещения" Type="varchar" MaxLength="20" />
+          <Property Name="IDВВС" Type="int" />
+          <Property Name="Средняя_Температура" Type="int" />
+          <Property Name="Влажность" Type="int" />
+          <Property Name="Требования_Пожарной_Безопасности" Type="varchar" MaxLength="20" />
+          <Property Name="Наличие_Спецоборудования" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <Association Name="R_14">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Принятое_Сырье" Type="Self.Принятое_Сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Принятое_Сырье">
+              <PropertyRef Name="СотрудникПриема" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_3">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="0..1" />
+          <End Role="Послужной_Список" Type="Self.Послужной_Список" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="IDДолжности" />
+            </Principal>
+            <Dependent Role="Послужной_Список">
+              <PropertyRef Name="IDДолжности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_4">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Послужной_Список" Type="Self.Послужной_Список" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Послужной_Список">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_6">
+          <End Role="Виды_Вторичного_Сырья" Type="Self.Виды_Вторичного_Сырья" Multiplicity="0..1" />
+          <End Role="Принятое_Сырье" Type="Self.Принятое_Сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Виды_Вторичного_Сырья">
+              <PropertyRef Name="IDВВС" />
+            </Principal>
+            <Dependent Role="Принятое_Сырье">
+              <PropertyRef Name="IDВВС" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_7">
+          <End Role="Виды_Вторичного_Сырья" Type="Self.Виды_Вторичного_Сырья" Multiplicity="0..1" />
+          <End Role="Типы_Складских_Помещений" Type="Self.Типы_Складских_Помещений" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Виды_Вторичного_Сырья">
+              <PropertyRef Name="IDВВС" />
+            </Principal>
+            <Dependent Role="Типы_Складских_Помещений">
+              <PropertyRef Name="IDВВС" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_9">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" />
+          <End Role="Складские_Помещения" Type="Self.Складские_Помещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Складские_Помещения">
+              <PropertyRef Name="Ответственный" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище PVSModelContainer">
+          <EntitySet Name="Виды_Вторичного_Сырья" EntityType="Self.Виды_Вторичного_Сырья" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Послужной_Список" EntityType="Self.Послужной_Список" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Принятое_Сырье" EntityType="Self.Принятое_Сырье" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Складские_Помещения" EntityType="Self.Складские_Помещения" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Типы_Складских_Помещений" EntityType="Self.Типы_Складских_Помещений" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="R_14" Association="Self.R_14">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Принятое_Сырье" EntitySet="Принятое_Сырье" />
+          </AssociationSet>
+          <AssociationSet Name="R_3" Association="Self.R_3">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Послужной_Список" EntitySet="Послужной_Список" />
+          </AssociationSet>
+          <AssociationSet Name="R_4" Association="Self.R_4">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Послужной_Список" EntitySet="Послужной_Список" />
+          </AssociationSet>
+          <AssociationSet Name="R_6" Association="Self.R_6">
+            <End Role="Виды_Вторичного_Сырья" EntitySet="Виды_Вторичного_Сырья" />
+            <End Role="Принятое_Сырье" EntitySet="Принятое_Сырье" />
+          </AssociationSet>
+          <AssociationSet Name="R_7" Association="Self.R_7">
+            <End Role="Виды_Вторичного_Сырья" EntitySet="Виды_Вторичного_Сырья" />
+            <End Role="Типы_Складских_Помещений" EntitySet="Типы_Складских_Помещений" />
+          </AssociationSet>
+          <AssociationSet Name="R_9" Association="Self.R_9">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Складские_Помещения" EntitySet="Складские_Помещения" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PVSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Виды_Вторичного_Сырья">
+          <Key>
+            <PropertyRef Name="IDВВС" />
+          </Key>
+          <Property Name="IDВВС" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Условия_Хранения" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Условие_Приёма_тара__упаковка_" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Наименование" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Цена_За_Килограмм" Type="Int32" />
+          <Property Name="Описание" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Принятое_Сырье" Relationship="Self.R_6" FromRole="Виды_Вторичного_Сырья" ToRole="Принятое_Сырье" />
+          <NavigationProperty Name="Типы_Складских_Помещений" Relationship="Self.R_7" FromRole="Виды_Вторичного_Сырья" ToRole="Типы_Складских_Помещений" />
+        </EntityType>
+        <EntityType Name="Должности">
+          <Key>
+            <PropertyRef Name="IDДолжности" />
+          </Key>
+          <Property Name="IDДолжности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="НаименованиеДолжности" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Оклад" Type="Int32" />
+          <Property Name="Обязанности" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Требования" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Послужной_Список" Relationship="Self.R_3" FromRole="Должности" ToRole="Послужной_Список" />
+        </EntityType>
+        <EntityType Name="Послужной_Список">
+          <Key>
+            <PropertyRef Name="IDПослужной_Список" />
+          </Key>
+          <Property Name="IDПослужной_Список" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDСотрудника" Type="Int32" />
+          <Property Name="IDДолжности" Type="Int32" />
+          <Property Name="НаименованиеСписка" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Дата_Принятия" Type="DateTime" Precision="3" />
+          <Property Name="Дата_Выхода" Type="DateTime" Precision="3" />
+          <Property Name="Краткая_Характеристика" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Должности" Relationship="Self.R_3" FromRole="Послужной_Список" ToRole="Должности" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.R_4" FromRole="Послужной_Список" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Принятое_Сырье">
+          <Key>
+            <PropertyRef Name="IDПС" />
+          </Key>
+          <Property Name="IDПС" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDВВС" Type="Int32" />
+          <Property Name="Количество_в_КГ" Type="Int32" />
+          <Property Name="Цена" Type="Int32" />
+          <Property Name="Дата_и_Время_Приема" Type="DateTime" Precision="3" />
+          <Property Name="Помещение_Хранения" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="СотрудникПриема" Type="Int32" />
+          <NavigationProperty Name="Виды_Вторичного_Сырья" Relationship="Self.R_6" FromRole="Принятое_Сырье" ToRole="Виды_Вторичного_Сырья" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.R_14" FromRole="Принятое_Сырье" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Складские_Помещения">
+          <Key>
+            <PropertyRef Name="IDСП" />
+          </Key>
+          <Property Name="IDСП" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="НаименованиеПомещения" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Инвентарный_Номер" Type="Int32" />
+          <Property Name="Площадь" Type="Int32" />
+          <Property Name="Вместимость_В_Тоннах" Type="Int32" />
+          <Property Name="Процент_Заполнения" Type="Int32" />
+          <Property Name="Ответственный" Type="Int32" />
+          <Property Name="Степень_Изношенности_Помещения" Type="Int32" />
+          <Property Name="Дата_Последней_Проверки_Пожарной_Инспекции" Type="DateTime" Precision="3" />
+          <Property Name="Дополнительный_Отметки" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Сотрудники" Relationship="Self.R_9" FromRole="Складские_Помещения" ToRole="Сотрудники" />
+        </EntityType>
+        <EntityType Name="Сотрудники">
+          <Key>
+            <PropertyRef Name="IDСотрудника" />
+          </Key>
+          <Property Name="IDСотрудника" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИО" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Дата_Рождения" Type="DateTime" Precision="3" />
+          <Property Name="Фото" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Пол" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Адрес" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Телефон" Type="Int32" />
+          <Property Name="Паспортные_данные" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Образование" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Должность" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Послужной_Список" Relationship="Self.R_4" FromRole="Сотрудники" ToRole="Послужной_Список" />
+          <NavigationProperty Name="Принятое_Сырье" Relationship="Self.R_14" FromRole="Сотрудники" ToRole="Принятое_Сырье" />
+          <NavigationProperty Name="Складские_Помещения" Relationship="Self.R_9" FromRole="Сотрудники" ToRole="Складские_Помещения" />
+        </EntityType>
+        <EntityType Name="Типы_Складских_Помещений">
+          <Key>
+            <PropertyRef Name="IDТСП" />
+          </Key>
+          <Property Name="IDТСП" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Наименование_Типа_Помещения" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="IDВВС" Type="Int32" />
+          <Property Name="Средняя_Температура" Type="Int32" />
+          <Property Name="Влажность" Type="Int32" />
+          <Property Name="Требования_Пожарной_Безопасности" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Наличие_Спецоборудования" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Виды_Вторичного_Сырья" Relationship="Self.R_7" FromRole="Типы_Складских_Помещений" ToRole="Виды_Вторичного_Сырья" />
+        </EntityType>
+        <Association Name="R_6">
+          <End Role="Виды_Вторичного_Сырья" Type="Self.Виды_Вторичного_Сырья" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Принятое_Сырье" Type="Self.Принятое_Сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Виды_Вторичного_Сырья">
+              <PropertyRef Name="IDВВС" />
+            </Principal>
+            <Dependent Role="Принятое_Сырье">
+              <PropertyRef Name="IDВВС" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_7">
+          <End Role="Виды_Вторичного_Сырья" Type="Self.Виды_Вторичного_Сырья" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Типы_Складских_Помещений" Type="Self.Типы_Складских_Помещений" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Виды_Вторичного_Сырья">
+              <PropertyRef Name="IDВВС" />
+            </Principal>
+            <Dependent Role="Типы_Складских_Помещений">
+              <PropertyRef Name="IDВВС" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_3">
+          <End Role="Должности" Type="Self.Должности" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Послужной_Список" Type="Self.Послужной_Список" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должности">
+              <PropertyRef Name="IDДолжности" />
+            </Principal>
+            <Dependent Role="Послужной_Список">
+              <PropertyRef Name="IDДолжности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_4">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Послужной_Список" Type="Self.Послужной_Список" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Послужной_Список">
+              <PropertyRef Name="IDСотрудника" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_14">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Принятое_Сырье" Type="Self.Принятое_Сырье" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Принятое_Сырье">
+              <PropertyRef Name="СотрудникПриема" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="R_9">
+          <End Role="Сотрудники" Type="Self.Сотрудники" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Складские_Помещения" Type="Self.Складские_Помещения" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Сотрудники">
+              <PropertyRef Name="IDСотрудника" />
+            </Principal>
+            <Dependent Role="Складские_Помещения">
+              <PropertyRef Name="Ответственный" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PVSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Виды_Вторичного_Сырья" EntityType="Self.Виды_Вторичного_Сырья" />
+          <EntitySet Name="Должности" EntityType="Self.Должности" />
+          <EntitySet Name="Послужной_Список" EntityType="Self.Послужной_Список" />
+          <EntitySet Name="Принятое_Сырье" EntityType="Self.Принятое_Сырье" />
+          <EntitySet Name="Складские_Помещения" EntityType="Self.Складские_Помещения" />
+          <EntitySet Name="Сотрудники" EntityType="Self.Сотрудники" />
+          <EntitySet Name="Типы_Складских_Помещений" EntityType="Self.Типы_Складских_Помещений" />
+          <AssociationSet Name="R_6" Association="Self.R_6">
+            <End Role="Виды_Вторичного_Сырья" EntitySet="Виды_Вторичного_Сырья" />
+            <End Role="Принятое_Сырье" EntitySet="Принятое_Сырье" />
+          </AssociationSet>
+          <AssociationSet Name="R_7" Association="Self.R_7">
+            <End Role="Виды_Вторичного_Сырья" EntitySet="Виды_Вторичного_Сырья" />
+            <End Role="Типы_Складских_Помещений" EntitySet="Типы_Складских_Помещений" />
+          </AssociationSet>
+          <AssociationSet Name="R_3" Association="Self.R_3">
+            <End Role="Должности" EntitySet="Должности" />
+            <End Role="Послужной_Список" EntitySet="Послужной_Список" />
+          </AssociationSet>
+          <AssociationSet Name="R_4" Association="Self.R_4">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Послужной_Список" EntitySet="Послужной_Список" />
+          </AssociationSet>
+          <AssociationSet Name="R_14" Association="Self.R_14">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Принятое_Сырье" EntitySet="Принятое_Сырье" />
+          </AssociationSet>
+          <AssociationSet Name="R_9" Association="Self.R_9">
+            <End Role="Сотрудники" EntitySet="Сотрудники" />
+            <End Role="Складские_Помещения" EntitySet="Складские_Помещения" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище PVSModelContainer" CdmEntityContainer="PVSEntities">
+          <EntitySetMapping Name="Виды_Вторичного_Сырья">
+            <EntityTypeMapping TypeName="PVSModel.Виды_Вторичного_Сырья">
+              <MappingFragment StoreEntitySet="Виды_Вторичного_Сырья">
+                <ScalarProperty Name="IDВВС" ColumnName="IDВВС" />
+                <ScalarProperty Name="Условия_Хранения" ColumnName="Условия_Хранения" />
+                <ScalarProperty Name="Условие_Приёма_тара__упаковка_" ColumnName="Условие_Приёма_тара__упаковка_" />
+                <ScalarProperty Name="Наименование" ColumnName="Наименование" />
+                <ScalarProperty Name="Цена_За_Килограмм" ColumnName="Цена_За_Килограмм" />
+                <ScalarProperty Name="Описание" ColumnName="Описание" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Должности">
+            <EntityTypeMapping TypeName="PVSModel.Должности">
+              <MappingFragment StoreEntitySet="Должности">
+                <ScalarProperty Name="IDДолжности" ColumnName="IDДолжности" />
+                <ScalarProperty Name="НаименованиеДолжности" ColumnName="НаименованиеДолжности" />
+                <ScalarProperty Name="Оклад" ColumnName="Оклад" />
+                <ScalarProperty Name="Обязанности" ColumnName="Обязанности" />
+                <ScalarProperty Name="Требования" ColumnName="Требования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Послужной_Список">
+            <EntityTypeMapping TypeName="PVSModel.Послужной_Список">
+              <MappingFragment StoreEntitySet="Послужной_Список">
+                <ScalarProperty Name="IDПослужной_Список" ColumnName="IDПослужной_Список" />
+                <ScalarProperty Name="IDСотрудника" ColumnName="IDСотрудника" />
+                <ScalarProperty Name="IDДолжности" ColumnName="IDДолжности" />
+                <ScalarProperty Name="НаименованиеСписка" ColumnName="НаименованиеСписка" />
+                <ScalarProperty Name="Дата_Принятия" ColumnName="Дата_Принятия" />
+                <ScalarProperty Name="Дата_Выхода" ColumnName="Дата_Выхода" />
+                <ScalarProperty Name="Краткая_Характеристика" ColumnName="Краткая_Характеристика" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Принятое_Сырье">
+            <EntityTypeMapping TypeName="PVSModel.Принятое_Сырье">
+              <MappingFragment StoreEntitySet="Принятое_Сырье">
+                <ScalarProperty Name="IDПС" ColumnName="IDПС" />
+                <ScalarProperty Name="IDВВС" ColumnName="IDВВС" />
+                <ScalarProperty Name="Количество_в_КГ" ColumnName="Количество_в_КГ" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+                <ScalarProperty Name="Дата_и_Время_Приема" ColumnName="Дата_и_Время_Приема" />
+                <ScalarProperty Name="Помещение_Хранения" ColumnName="Помещение_Хранения" />
+                <ScalarProperty Name="СотрудникПриема" ColumnName="СотрудникПриема" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Складские_Помещения">
+            <EntityTypeMapping TypeName="PVSModel.Складские_Помещения">
+              <MappingFragment StoreEntitySet="Складские_Помещения">
+                <ScalarProperty Name="IDСП" ColumnName="IDСП" />
+                <ScalarProperty Name="НаименованиеПомещения" ColumnName="НаименованиеПомещения" />
+                <ScalarProperty Name="Инвентарный_Номер" ColumnName="Инвентарный_Номер" />
+                <ScalarProperty Name="Площадь" ColumnName="Площадь" />
+                <ScalarProperty Name="Вместимость_В_Тоннах" ColumnName="Вместимость_В_Тоннах" />
+                <ScalarProperty Name="Процент_Заполнения" ColumnName="Процент_Заполнения" />
+                <ScalarProperty Name="Ответственный" ColumnName="Ответственный" />
+                <ScalarProperty Name="Степень_Изношенности_Помещения" ColumnName="Степень_Изношенности_Помещения" />
+                <ScalarProperty Name="Дата_Последней_Проверки_Пожарной_Инспекции" ColumnName="Дата_Последней_Проверки_Пожарной_Инспекции" />
+                <ScalarProperty Name="Дополнительный_Отметки" ColumnName="Дополнительный_Отметки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Сотрудники">
+            <EntityTypeMapping TypeName="PVSModel.Сотрудники">
+              <MappingFragment StoreEntitySet="Сотрудники">
+                <ScalarProperty Name="IDСотрудника" ColumnName="IDСотрудника" />
+                <ScalarProperty Name="ФИО" ColumnName="ФИО" />
+                <ScalarProperty Name="Дата_Рождения" ColumnName="Дата_Рождения" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="Паспортные_данные" ColumnName="Паспортные_данные" />
+                <ScalarProperty Name="Образование" ColumnName="Образование" />
+                <ScalarProperty Name="Должность" ColumnName="Должность" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Типы_Складских_Помещений">
+            <EntityTypeMapping TypeName="PVSModel.Типы_Складских_Помещений">
+              <MappingFragment StoreEntitySet="Типы_Складских_Помещений">
+                <ScalarProperty Name="IDТСП" ColumnName="IDТСП" />
+                <ScalarProperty Name="Наименование_Типа_Помещения" ColumnName="Наименование_Типа_Помещения" />
+                <ScalarProperty Name="IDВВС" ColumnName="IDВВС" />
+                <ScalarProperty Name="Средняя_Температура" ColumnName="Средняя_Температура" />
+                <ScalarProperty Name="Влажность" ColumnName="Влажность" />
+                <ScalarProperty Name="Требования_Пожарной_Безопасности" ColumnName="Требования_Пожарной_Безопасности" />
+                <ScalarProperty Name="Наличие_Спецоборудования" ColumnName="Наличие_Спецоборудования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

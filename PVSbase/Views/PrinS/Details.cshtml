@@ -1,0 +1,64 @@
+﻿@model PVSbase.Принятое_Сырье
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробный Просмотр</h2>
+
+<fieldset>
+    <legend>Принятое_Сырье</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IDПС)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IDПС)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Виды_Вторичного_Сырья.Условия_Хранения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Виды_Вторичного_Сырья.Условия_Хранения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Количество_в_КГ)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Количество_в_КГ)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Цена)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Цена)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Дата_и_Время_Приема)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Дата_и_Время_Приема)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Помещение_Хранения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Помещение_Хранения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Сотрудники.ФИО)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Сотрудники.ФИО)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.IDПС }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

@@ -1,0 +1,84 @@
+﻿@model PVSbase.Типы_Складских_Помещений
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Типы_Складских_Помещений</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IDТСП)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IDТСП)
+            @Html.ValidationMessageFor(model => model.IDТСП)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Наименование_Типа_Помещения)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Наименование_Типа_Помещения)
+            @Html.ValidationMessageFor(model => model.Наименование_Типа_Помещения)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IDВВС, "Виды_Вторичного_Сырья")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("IDВВС", String.Empty)
+            @Html.ValidationMessageFor(model => model.IDВВС)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Средняя_Температура)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Средняя_Температура)
+            @Html.ValidationMessageFor(model => model.Средняя_Температура)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Влажность)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Влажность)
+            @Html.ValidationMessageFor(model => model.Влажность)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Требования_Пожарной_Безопасности)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Требования_Пожарной_Безопасности)
+            @Html.ValidationMessageFor(model => model.Требования_Пожарной_Безопасности)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Наличие_Спецоборудования)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Наличие_Спецоборудования)
+            @Html.ValidationMessageFor(model => model.Наличие_Спецоборудования)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

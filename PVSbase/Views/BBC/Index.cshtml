@@ -1,0 +1,76 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<PVSbase.Виды_Вторичного_Сырья>
+<link href="~/Content/Table.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Виды Вторичного Сырья</h2>
+
+<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+@using (Html.BeginForm("Index", "BBC", FormMethod.Get))
+{
+    <fieldset>
+        Наименование : @Html.TextBox("param")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+<table class="features-table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            Условия Хранения
+        </th>
+        <th>
+            Условие Приема
+        </th>
+        <th>
+            Наименование
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+            Описание
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDВВС)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Условия_Хранения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Условие_Приёма_тара__упаковка_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Наименование)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Цена_За_Килограмм)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Описание)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.IDВВС }) <br />
+                @Html.ActionLink("Подробно", "Details", new { id = item.IDВВС }) <br />
+                @Html.ActionLink("Удалить", "Delete", new { id = item.IDВВС })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="btn-group">
+    @Html.PagedListPager(Model, x => Url.Action("Index", new { page = x, param = Request["param"] }))
+</div>

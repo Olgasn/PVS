@@ -1,0 +1,103 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<PVSbase.Складские_Помещения>
+<link href="~/Content/Table.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Складские Помещения</h2>
+
+<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+@using (Html.BeginForm("Index", "SKLAD", FormMethod.Get))
+{
+    <fieldset>
+        Наименование : @Html.TextBox("param")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+    <table class="features-table">
+        
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Имя
+            </th>
+            <th>
+                Номер
+            </th>
+            <th>
+                Площадь
+            </th>
+            <th>
+                Вместимость(т)
+            </th>
+            <th>
+                Заполненность(%)
+            </th>
+            <th>
+                Сотрудники
+            </th>
+            <th>
+                Изношенность(%)
+            </th>
+            <th>
+               Последняя проверка
+                
+            </th>
+            <th> Доп.Отметки
+                                  
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IDСП)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.НаименованиеПомещения)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Инвентарный_Номер)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Площадь)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Вместимость_В_Тоннах)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Процент_Заполнения)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Сотрудники.ФИО)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Степень_Изношенности_Помещения)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дата_Последней_Проверки_Пожарной_Инспекции)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Дополнительный_Отметки)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.IDСП }) |
+                    @Html.ActionLink("Подробно", "Details", new { id = item.IDСП }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.IDСП })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <div class="btn-group">
+        @Html.PagedListPager(Model, x => Url.Action("Index", new { page = x, param = Request["param"] }))
+    </div>

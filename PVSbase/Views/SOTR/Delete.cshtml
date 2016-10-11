@@ -1,0 +1,89 @@
+﻿@model PVSbase.Сотрудники
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Удаление</h2>
+
+<h3>Вы точно хотите удалить запись?</h3>
+<fieldset>
+    <legend>Сотрудники</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IDСотрудника)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IDСотрудника)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ФИО)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ФИО)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Дата_Рождения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Дата_Рождения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Фото)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Фото)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Пол)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Пол)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Адрес)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Адрес)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Телефон)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Телефон)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Паспортные_данные)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Паспортные_данные)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Образование)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Образование)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Должность)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Должность)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Удалить" /> |
+        @Html.ActionLink("Вернуться", "Index")
+    </p>
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5b9bea958dc8458a88b0eb03ae1d0ba3" Name="Diagram1">
+        <EntityTypeShape EntityType="PVSModel.Виды_Вторичного_Сырья" Width="1.5" PointX="3.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PVSModel.Должности" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="PVSModel.Послужной_Список" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PVSModel.Принятое_Сырье" Width="1.5" PointX="6" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PVSModel.Складские_Помещения" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="PVSModel.Сотрудники" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PVSModel.Типы_Складских_Помещений" Width="1.5" PointX="6" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="PVSModel.R_6" ManuallyRouted="false" />
+        <AssociationConnector Association="PVSModel.R_7" ManuallyRouted="false" />
+        <AssociationConnector Association="PVSModel.R_3" ManuallyRouted="false" />
+        <AssociationConnector Association="PVSModel.R_4" ManuallyRouted="false" />
+        <AssociationConnector Association="PVSModel.R_14" ManuallyRouted="false" />
+        <AssociationConnector Association="PVSModel.R_9" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,76 @@
+﻿@model PVSbase.Виды_Вторичного_Сырья
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Редактирование</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Виды_Вторичного_Сырья</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IDВВС)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IDВВС)
+            @Html.ValidationMessageFor(model => model.IDВВС)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Условия_Хранения)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Условия_Хранения)
+            @Html.ValidationMessageFor(model => model.Условия_Хранения)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Условие_Приёма_тара__упаковка_)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Условие_Приёма_тара__упаковка_)
+            @Html.ValidationMessageFor(model => model.Условие_Приёма_тара__упаковка_)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Наименование)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Наименование)
+            @Html.ValidationMessageFor(model => model.Наименование)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Цена_За_Килограмм)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Цена_За_Килограмм)
+            @Html.ValidationMessageFor(model => model.Цена_За_Килограмм)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Описание)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Описание)
+            @Html.ValidationMessageFor(model => model.Описание)
+        </div>
+
+        <p>
+            <input type="submit" value="Сохранить" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Вернуться", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

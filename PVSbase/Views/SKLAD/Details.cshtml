@@ -1,0 +1,85 @@
+﻿@model PVSbase.Складские_Помещения
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Подробный Просмотр</h2>
+
+<fieldset>
+    <legend>Складские_Помещения</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IDСП)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IDСП)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.НаименованиеПомещения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.НаименованиеПомещения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Инвентарный_Номер)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Инвентарный_Номер)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Площадь)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Площадь)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Вместимость_В_Тоннах)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Вместимость_В_Тоннах)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Процент_Заполнения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Процент_Заполнения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Сотрудники.ФИО)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Сотрудники.ФИО)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Степень_Изношенности_Помещения)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Степень_Изношенности_Помещения)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Дата_Последней_Проверки_Пожарной_Инспекции)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Дата_Последней_Проверки_Пожарной_Инспекции)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Дополнительный_Отметки)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Дополнительный_Отметки)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Редактировать", "Edit", new { id=Model.IDСП }) |
+    @Html.ActionLink("Вернуться", "Index")
+</p>

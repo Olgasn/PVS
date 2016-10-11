@@ -1,0 +1,83 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<PVSbase.Принятое_Сырье>
+<link href="~/Content/Table.css" rel="stylesheet" type="text/css" />
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Принятое Сырье</h2>
+
+<p>
+    @Html.ActionLink("Создать", "Create")
+</p>
+@using (Html.BeginForm("Index", "PrinS", FormMethod.Get))
+{
+    <fieldset>
+        Помещение : @Html.TextBox("param")
+        <input type="submit" value="Найти" />
+    </fieldset>
+}
+<table class="features-table">
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+           Условия Хранения
+        </th>
+        <th>
+            Количество(кг)
+        </th>
+        <th>
+            Цена
+        </th>
+        <th>
+            Время Приема
+        </th>
+        <th>
+            Помещение Хранения
+        </th>
+        <th>
+            Сотрудники
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IDПС)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Виды_Вторичного_Сырья.Условия_Хранения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Количество_в_КГ)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Цена)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Дата_и_Время_Приема)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Помещение_Хранения)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Сотрудники.ФИО)
+            </td>
+            <td>
+                @Html.ActionLink("Редактировать", "Edit", new { id = item.IDПС }) |
+                @Html.ActionLink("Подробно", "Details", new { id = item.IDПС }) |
+                @Html.ActionLink("Удалить", "Delete", new { id = item.IDПС })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="btn-group">
+    @Html.PagedListPager(Model, x => Url.Action("Index", new { page = x, param = Request["param"] }))
+</div>
